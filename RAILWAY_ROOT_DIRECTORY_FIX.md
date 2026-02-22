@@ -80,7 +80,7 @@ Don't forget to add these in Railway **Variables** tab:
 ```
 SECRET_KEY=54^z6@&-er77om9u2njpm3_fzup0v66zmj6#bglb=ag%+(cd9q
 DEBUG=False
-GOOGLE_API_KEY=AIzaSyBCyLZjHtCIMVwgNdcbKF5tmTzpQiyO8IA
+GOOGLE_API_KEY=AIzaSyDDGQNiaVLLZ1NFeh2FXxuvl12iGRjTHVs
 ALLOWED_HOSTS=*.railway.app
 CORS_ALLOWED_ORIGINS=http://localhost:5173
 ```

@@ -18,7 +18,7 @@
      ```
      SECRET_KEY=run-python-generate_secret_key.py-to-get-this
      DEBUG=False
-     GOOGLE_API_KEY=AIzaSyBCyLZjHtCIMVwgNdcbKF5tmTzpQiyO8IA
+     GOOGLE_API_KEY=AIzaSyDDGQNiaVLLZ1NFeh2FXxuvl12iGRjTHVs
      ALLOWED_HOSTS=*.railway.app
      CORS_ALLOWED_ORIGINS=https://your-frontend.vercel.app
      ```

@@ -59,7 +59,7 @@ git push -u origin main
      ```
      SECRET_KEY=54^z6@&-er77om9u2njpm3_fzup0v66zmj6#bglb=ag%+(cd9q
      DEBUG=False
-     GOOGLE_API_KEY=AIzaSyBCyLZjHtCIMVwgNdcbKF5tmTzpQiyO8IA
+     GOOGLE_API_KEY=AIzaSyDDGQNiaVLLZ1NFeh2FXxuvl12iGRjTHVs
      ALLOWED_HOSTS=*.railway.app
      ```
 6. Wait for deployment (2-3 minutes)
