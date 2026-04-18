@@ -4,6 +4,8 @@ import { EarthCanvas } from "../canvas";
 import { slideIn } from "../../utils/motion";
 import { useNavigate } from "react-router-dom";
 import { signUp } from "../../utils/api";
+import { useDispatch } from "react-redux";
+import { setCredentials } from "../../../features/auth/authSlice";
 import "regenerator-runtime/runtime";
 import Swal from 'sweetalert2'
 
@@ -12,6 +14,7 @@ const SignUp = () => {
   const [formData, setFormData] = useState({});
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     setFormData({
@@ -84,6 +87,9 @@ const SignUp = () => {
         return;
       }
 
+      // Store JWT tokens
+      dispatch(setCredentials({ user: data.user, tokens: data.tokens }));
+
       Swal.fire({
         icon: "success",
         title: "User Registered Successfully",
@@ -91,7 +97,7 @@ const SignUp = () => {
         timer: 1500
       });
       setLoading(false);
-      navigate("/quiz");
+      navigate("/dashboard");
       
     } catch (error) {
       setLoading(false);

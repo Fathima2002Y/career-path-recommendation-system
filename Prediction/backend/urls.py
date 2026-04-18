@@ -1,4 +1,6 @@
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
@@ -10,19 +12,28 @@ def root_view(request):
         'status': 'success',
         'message': 'Career Path Recommendation System API is running',
         'endpoints': {
-            'auth': '/api/auth/signup/, /api/auth/signin/',
+            'auth': '/api/auth/signup/, /api/auth/signin/, /api/auth/refresh/',
             'quiz': '/api/get/quiz/ (POST)',
-            'prediction': '/api/get/quiz/ (POST)',
             'sentiment': '/api/get/sentiment/ (POST)',
-            'user': '/api/get/user/ (GET)',
+            'profile': '/api/profile/ (GET, PATCH)',
+            'predictions': '/api/predictions/history/ (GET)',
+            'resume': '/api/resume/upload/ (POST), /api/resume/history/ (GET)',
+            'guidance': '/api/guidance/ (POST)',
+            'jobs': '/api/jobs/ (POST)',
             'chat': '/api/chat/ (POST)',
-            'voice': '/api/voice/ (POST), /api/bot/cmd/ (GET)'
+            'voice': '/api/voice/ (POST), /api/bot/cmd/ (GET)',
         }
     }, status=status.HTTP_200_OK)
 
 urlpatterns = [
     path('', root_view, name='root'),
-    path('api/', include('prediction.urls')),   
+    path('api/', include('prediction.urls')),
     path('api/', include('chatapp.urls')),
     path('api/', include('voiceapp.urls')),
+    path('api/', include('resumeapp.urls')),
+    path('api/', include('guidanceapp.urls')),
+    path('api/', include('jobsapp.urls')),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

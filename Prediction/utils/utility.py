@@ -1,21 +1,32 @@
 import os
 import string
-from nltk.corpus import stopwords
-from nltk.sentiment.vader import SentimentIntensityAnalyzer
-from nltk.stem import WordNetLemmatizer
-from nltk.tokenize import word_tokenize
-import nltk
-
-nltk.download('vader_lexicon')
-nltk.download('punkt')
-nltk.download('wordnet')
-nltk.download('stopwords')
-
 import json
+
+# Lazy NLTK initialization to avoid blocking Django server startup
+_nltk_initialized = False
+
+def _ensure_nltk():
+    """Download NLTK data only when first needed, not at import time."""
+    global _nltk_initialized
+    if _nltk_initialized:
+        return
+    import nltk
+    for pkg in ['vader_lexicon', 'punkt', 'punkt_tab', 'wordnet', 'stopwords']:
+        try:
+            nltk.download(pkg, quiet=True)
+        except Exception:
+            pass
+    _nltk_initialized = True
 
 def predict_sentiment(text_input):
     
     try:
+        _ensure_nltk()
+        from nltk.corpus import stopwords
+        from nltk.sentiment.vader import SentimentIntensityAnalyzer
+        from nltk.stem import WordNetLemmatizer
+        from nltk.tokenize import word_tokenize
+
         lower_case = text_input.lower()
         cleaned_text = lower_case.translate(str.maketrans('', '', string.punctuation))
         tokenized_words = word_tokenize(cleaned_text, "english")

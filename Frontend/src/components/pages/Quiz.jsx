@@ -86,7 +86,9 @@ const Quiz = () => {
         navigate("/predict", {
           state: {
             prediction: data.prediction,
+            predicted_role: data.predicted_role,
             probability: data.probability,
+            ai_suggested_roles: data.ai_suggested_roles || [],
           },
         });
       } else {
